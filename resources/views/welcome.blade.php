@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Laravel Starter</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
+
+<body class="flex flex-col min-h-screen">
     <nav class="bg-[#0f4e43] text-[#d1fd98] relative">
         <!-- Desktop Navigation -->
         <div class="container mx-auto px-4">
@@ -33,13 +35,38 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden absolute inset-x-0 top-16 bg-[#0f4e43] border-t border-[#d1fd98]/20 transition-all duration-200 opacity-0 -translate-y-4">
+        <div id="mobile-menu"
+            class="hidden md:hidden absolute inset-x-0 top-16 bg-[#0f4e43] border-t border-[#d1fd98]/20 transition-all duration-200 opacity-0 -translate-y-4">
             <div class="px-4 py-3 space-y-3">
                 <a href="" class="block hover:text-white transition-colors">Home</a>
                 <a href="https://google.com" class="block hover:text-white transition-colors">Google</a>
             </div>
         </div>
     </nav>
+
+
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <h1 class="text-2xl font-bold">Weather Dashboard</h1>
+
+        <div class="mt-6">
+            <p>Current Temperature: <span>XX</span></p>
+            <p>Current Condition: Sunny</p>
+        </div>
+        <div class="mt-6">
+            <h2 class="text-xl font-semibold">Additional Details</h2>
+            <p>Humidity: <span>X%</span></p>
+            <p>Wind Speed: <span>X</span></p>
+        </div>
+    </main>
+
+    <footer class="bg-[#0f4e43] text-[#d1fd98] py-4">
+        <div class="container mx-auto px-4 text-center flex justify-center gap-4">
+            <x-icons.linkedin class="w-6 h-6 text-[#d1fd98]" />
+            <x-icons.youtube class="w-6 h-6 text-[#d1fd98]" />
+            <x-icons.spotify class="w-6 h-6 text-[#d1fd98]" />
+            <p>&copy; {{ date('Y') }} Weather Dashboard. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script>
         function toggleMenu() {
@@ -66,16 +93,5 @@
             }
         }
     </script>
-    <h1 class="text-2xl font-bold">Weather Dashboard</h1>
-
-    <div>
-        <p>Current Temperature: <span>XX</span></p>
-        <p>Current Condition: Sunny</p>
-    </div>
-    <div>
-        <h2>Additional Details</h2>
-        <p>Humidity: <span>X%</span></p>
-        <p>Wind Speed: <span>X</span></p>
-    </div>
 </body>
 </html>
