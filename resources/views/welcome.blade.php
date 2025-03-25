@@ -44,18 +44,26 @@
         </div>
     </nav>
 
+    <main class="flex-grow container mx-auto px-4 py-8 flex justify-center">
+        <div class="bg-white rounded-lg shadow-lg p-8 max-w-md w-full">
+            <h1 class="text-2xl font-bold flex items-center gap-2 text-[#0f4e43] mb-6">
+                <x-icons.sun class="size-8 text-amber-500" />Todays Weather
+            </h1>
 
-    <main class="flex-grow container mx-auto px-4 py-8">
-        <h1 class="text-2xl font-bold">Weather Dashboard</h1>
-
-        <div class="mt-6">
-            <p>Current Temperature: <span>XX</span></p>
-            <p>Current Condition: Sunny</p>
-        </div>
-        <div class="mt-6">
-            <h2 class="text-xl font-semibold">Additional Details</h2>
-            <p>Humidity: <span>X%</span></p>
-            <p>Wind Speed: <span>X</span></p>
+            <div class="space-y-4 divide-y divide-gray-100">
+                <div class="pb-4">
+                    <p class="text-lg">Current Temperature: <span class="font-semibold text-[#0f4e43]">XX°</span></p>
+                    <p class="text-gray-600">Current Condition: <span class="text-[#0f4e43]">Sunny</span></p>
+                </div>
+                
+                <div class="pt-4">
+                    <h2 class="text-xl font-semibold text-[#0f4e43] mb-3">Additional Details</h2>
+                    <div class="space-y-2 text-gray-600">
+                        <p>Humidity: <span class="text-[#0f4e43] font-medium">X%</span></p>
+                        <p>Wind Speed: <span class="text-[#0f4e43] font-medium">X mph</span></p>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
