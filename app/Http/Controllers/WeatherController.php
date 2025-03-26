@@ -27,8 +27,13 @@ class WeatherController extends Controller
             return response()->json($this->apiService->get('forecast', [
                 // 'latitude' => $request->latitude,
                 // 'longitude' => $request->longitude,
-                'latitude' => 67.34,
-                'longitude' => 13.41,
+                'latitude' => 35.22,
+                'longitude' => -80.85,
+                'wind_speed_unit' => 'mph',
+                'temperature_unit' => 'fahrenheit',
+                'precipitation_unit' => 'inch',
+                'hourly' => 'temperature_2m',
+                'current' => ['temperature_2m','relative_humidity_2m','weather_code','wind_speed_10m']
             ]));
         } catch (\Exception $e) {
             return response()->json([
