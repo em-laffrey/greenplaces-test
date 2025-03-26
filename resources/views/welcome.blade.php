@@ -42,19 +42,7 @@
     </nav>
 
     <main class="flex-grow container mx-auto px-4 py-8 flex justify-center">
-        <div class="bg-white rounded-lg shadow-lg p-8 max-w-md w-full">
-            <h1 class="text-2xl font-bold flex items-center gap-2 text-[#0f4e43] mb-6">
-                <x-icons.sun class="size-8 text-amber-500" />Weather Forecast
-            </h1>
-            <div id="weather-data" class="text-gray-600">
-                <div class="animate-pulse">
-                    <div class="h-4 bg-gray-200 rounded w-3/4 mb-4"></div>
-                    <div class="h-4 bg-gray-200 rounded w-1/2 mb-4"></div>
-                    <div class="h-4 bg-gray-200 rounded w-5/6"></div>
-                </div>
-            </div>
-            <div id="error-message" class="mt-4 text-red-600 hidden"></div>
-        </div>
+        <livewire:weather-search />
     </main>
 
     <footer class="bg-[#0f4e43] text-[#d1fd98] py-4">
@@ -90,52 +78,6 @@
                 menuClose.classList.add('hidden');
             }
         }
-
-        document.addEventListener('DOMContentLoaded', async () => {
-                const dataDiv = document.getElementById('weather-data');
-                const errorDiv = document.getElementById('error-message');
-
-                try {
-                    const response = await fetch('/api/weather');
-                    const data = await response.json();
-
-                    if (!response.ok) {
-                        throw new Error(data.message || 'Failed to fetch weather data');
-                    }
-                    
-                    let html = '<div class="space-y-4">';
-                    
-                    if (data.current) {
-                        const temp = data.current.temperature_2m;
-                        const humidity = data.current.relative_humidity_2m;
-                        const windSpeed = data.current.wind_speed_10m;
-                        const weatherCode = data.current.weather_code;
-
-                        html += `
-                            <div class="space-y-4 divide-y divide-gray-100">
-                                <div class="pb-4">
-                                    <p class="text-lg">Current Temperature: <span class="font-semibold text-[#0f4e43]">${temp}°</span></p>
-                                    <p class="text-gray-600">Current Condition: <span class="text-[#0f4e43]">${weatherCode}</span></p>
-                                </div>
-                                <div class="pt-4">
-                                    <h2 class="text-xl font-semibold text-[#0f4e43] mb-3">Additional Details</h2>
-                                    <p class="text-lg">Humidity: <span class="font-semibold text-[#0f4e43]">${humidity}%</span></p>
-                                    <p class="text-gray-600">Wind Speed: <span class="font-semibold text-[#0f4e43]">${windSpeed} mph</span></p>
-                                </div>
-                            </div>
-                            `;
-                    } else {
-                        html += '<p>No weather data available</p>';
-                    }
-                    
-                    html += '</div>';
-                    dataDiv.innerHTML = html;
-                } catch (error) {
-                    errorDiv.classList.remove('hidden');
-                    errorDiv.textContent = error.message;
-                    dataDiv.innerHTML = '<p class="text-gray-500">Failed to load weather data</p>';
-                }
-            });
     </script>
 </body>
 </html>
