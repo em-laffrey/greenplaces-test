@@ -15,20 +15,20 @@ class WeatherController extends Controller
 
     public function getForecast(Request $request): JsonResponse
     {
-        $validator = Validator::make($request->all(), [
-            'latitude' => ['required', 'numeric', 'between:-90,90'],
-            'longitude' => ['required', 'numeric', 'between:-180,180'],
-        ]);
+        // $validator = Validator::make($request->all(), [
+        //     'latitude' => ['required', 'numeric', 'between:-90,90'],
+        //     'longitude' => ['required', 'numeric', 'between:-180,180'],
+        // ]);
 
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
-        }
-
+        // if ($validator->fails()) {
+        //     return response()->json($validator->errors(), 422);
+        // }
         try {
             return response()->json($this->apiService->get('forecast', [
-                'latitude' => $request->latitude,
-                'longitude' => $request->longitude,
-                'hourly' => 'temperature_2m'
+                // 'latitude' => $request->latitude,
+                // 'longitude' => $request->longitude,
+                'latitude' => 67.34,
+                'longitude' => 13.41,
             ]));
         } catch (\Exception $e) {
             return response()->json([
