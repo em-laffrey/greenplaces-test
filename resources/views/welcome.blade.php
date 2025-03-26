@@ -9,47 +9,58 @@
 </head>
 
 <body class="flex flex-col min-h-screen">
-    <nav class="bg-[#0f4e43] text-[#d1fd98] relative">
+    <nav class="bg-[#0f4e43] text-[#d1fd98] relative" role="navigation" aria-label="Main navigation">
 
         <!-- Desktop Navigation -->
         <div class="container mx-auto px-4">
             <div class="flex items-center justify-between h-16">
-                <a class="flex items-center gap-2 text-lg" href="">
-                    <x-icons.globe-americas class="size-8" />
+                <a class="flex items-center gap-2 text-lg" href="" aria-label="Weather Dashboard Home">
+                    <x-icons.globe-americas class="size-8" aria-hidden="true" />
                     Weather Dashboard
                 </a>
                 <div class="hidden md:flex space-x-8">
-                    <a href="" class="hover:text-white transition-colors">Home</a>
-                    <a href="https://google.com" class="hover:text-white transition-colors">Google</a>
+                    <a href="" class="hover:text-white transition-colors" aria-label="Home page">Home</a>
+                    <a href="https://google.com" class="hover:text-white transition-colors" aria-label="Visit Google">Google</a>
                 </div>
 
                 <!-- Mobile Menu -->
                 <div class="md:hidden">
-                    <button onclick="toggleMenu()" class="text-[#d1fd98] hover:text-white transition-colors">
-                        <x-icons.bars-3 id="menu-open" class="w-8 h-8" />
-                        <x-icons.x-mark id="menu-close" class="w-8 h-8 hidden" />
+                    <button onclick="toggleMenu()" class="text-[#d1fd98] hover:text-white transition-colors" 
+                            aria-expanded="false" 
+                            aria-controls="mobile-menu" 
+                            aria-label="Toggle navigation menu">
+                        <x-icons.bars-3 id="menu-open" class="w-8 h-8" aria-hidden="true" />
+                        <x-icons.x-mark id="menu-close" class="w-8 h-8 hidden" aria-hidden="true" />
                     </button>
                 </div>
             </div>
         </div>
         <div id="mobile-menu"
-            class="hidden md:hidden absolute inset-x-0 top-16 bg-[#0f4e43] border-t border-[#d1fd98]/20 transition-all duration-200 opacity-0 -translate-y-4">
+            class="hidden md:hidden absolute inset-x-0 top-16 bg-[#0f4e43] border-t border-[#d1fd98]/20 transition-all duration-200 opacity-0 -translate-y-4"
+            role="menu" 
+            aria-label="Mobile navigation menu">
             <div class="px-4 py-3 space-y-3">
-                <a href="" class="block hover:text-white transition-colors">Home</a>
-                <a href="https://google.com" class="block hover:text-white transition-colors">Google</a>
+                <a href="" class="block hover:text-white transition-colors" role="menuitem">Home</a>
+                <a href="https://google.com" class="block hover:text-white transition-colors" role="menuitem">Google</a>
             </div>
         </div>
     </nav>
 
-    <main class="flex-grow container mx-auto px-4 py-8 flex justify-center">
+    <main class="flex-grow container mx-auto px-4 py-8 flex justify-center" role="main">
         <livewire:weather-search />
     </main>
 
-    <footer class="bg-[#0f4e43] text-[#d1fd98] py-4">
+    <footer class="bg-[#0f4e43] text-[#d1fd98] py-4" role="contentinfo">
         <div class="container mx-auto px-4 text-center flex justify-center gap-4">
-            <x-icons.linkedin class="w-6 h-6 text-[#d1fd98]" />
-            <x-icons.youtube class="w-6 h-6 text-[#d1fd98]" />
-            <x-icons.spotify class="w-6 h-6 text-[#d1fd98]" />
+            <a href="#" aria-label="Visit our LinkedIn page">
+                <x-icons.linkedin class="w-6 h-6 text-[#d1fd98]" aria-hidden="true" />
+            </a>
+            <a href="#" aria-label="Visit our YouTube channel">
+                <x-icons.youtube class="w-6 h-6 text-[#d1fd98]" aria-hidden="true" />
+            </a>
+            <a href="#" aria-label="Visit our Spotify page">
+                <x-icons.spotify class="w-6 h-6 text-[#d1fd98]" aria-hidden="true" />
+            </a>
             <p>&copy; {{ date('Y') }} Weather Dashboard. All rights reserved.</p>
         </div>
     </footer>
@@ -59,6 +70,7 @@
             const mobileMenu = document.getElementById('mobile-menu');
             const menuOpen = document.getElementById('menu-open');
             const menuClose = document.getElementById('menu-close');
+            const menuButton = menuOpen.parentElement;
 
             if (mobileMenu.classList.contains('hidden')) {
                 // Show menu
@@ -68,6 +80,7 @@
                 }, 10);
                 menuOpen.classList.add('hidden');
                 menuClose.classList.remove('hidden');
+                menuButton.setAttribute('aria-expanded', 'true');
             } else {
                 // Hide menu
                 mobileMenu.classList.add('opacity-0', '-translate-y-4');
@@ -76,6 +89,7 @@
                 }, 200);
                 menuOpen.classList.remove('hidden');
                 menuClose.classList.add('hidden');
+                menuButton.setAttribute('aria-expanded', 'false');
             }
         }
     </script>
