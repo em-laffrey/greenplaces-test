@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\WeatherController;
+use App\Services\ApiService;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Route;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -11,7 +14,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(ApiService::class, function () {
+            return new ApiService('https://api.open-meteo.com/v1');
+        });
     }
 
     /**
@@ -19,6 +24,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Route::middleware('api')
+            ->prefix('api')
+            ->group(function () {
+                Route::get('/weather', [WeatherController::class, 'getForecast']);
+            });
     }
 }
