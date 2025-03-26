@@ -1,6 +1,6 @@
 <div class="bg-white rounded-lg shadow-lg p-8 max-w-md w-full">
     <h1 class="text-2xl font-bold flex items-center gap-2 text-[#0f4e43] mb-6">
-        <x-icons.sun class="size-8 text-amber-500" aria-hidden="true" />Weather Search
+        <x-icons.sun class="size-8 text-amber-500" aria-hidden="true" />Weather in your area
     </h1>
 
     <div class="mb-6">

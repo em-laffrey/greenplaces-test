@@ -66,31 +66,33 @@
     </footer>
 
     <script>
-        function toggleMenu() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            const menuOpen = document.getElementById('menu-open');
-            const menuClose = document.getElementById('menu-close');
-            const menuButton = menuOpen.parentElement;
+        function showMenu(menu, openIcon, closeIcon, button) {
+            menu.classList.remove('hidden');
+            setTimeout(() => menu.classList.remove('opacity-0', '-translate-y-4'), 10);
+            
+            openIcon.classList.add('hidden');
+            closeIcon.classList.remove('hidden');
+            button.setAttribute('aria-expanded', 'true');
+        }
 
-            if (mobileMenu.classList.contains('hidden')) {
-                // Show menu
-                mobileMenu.classList.remove('hidden');
-                setTimeout(() => {
-                    mobileMenu.classList.remove('opacity-0', '-translate-y-4');
-                }, 10);
-                menuOpen.classList.add('hidden');
-                menuClose.classList.remove('hidden');
-                menuButton.setAttribute('aria-expanded', 'true');
-            } else {
-                // Hide menu
-                mobileMenu.classList.add('opacity-0', '-translate-y-4');
-                setTimeout(() => {
-                    mobileMenu.classList.add('hidden');
-                }, 200);
-                menuOpen.classList.remove('hidden');
-                menuClose.classList.add('hidden');
-                menuButton.setAttribute('aria-expanded', 'false');
-            }
+        function hideMenu(menu, openIcon, closeIcon, button) {
+            menu.classList.add('opacity-0', '-translate-y-4');
+            setTimeout(() => menu.classList.add('hidden'), 200);
+            
+            openIcon.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
+            button.setAttribute('aria-expanded', 'false');
+        }
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const openIcon = document.getElementById('menu-open');
+            const closeIcon = document.getElementById('menu-close');
+            const button = openIcon.parentElement;
+
+            menu.classList.contains('hidden')
+                ? showMenu(menu, openIcon, closeIcon, button)
+                : hideMenu(menu, openIcon, closeIcon, button);
         }
     </script>
 </body>
